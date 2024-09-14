@@ -15,5 +15,10 @@ def test_xfail():
 
 @pytest.mark.skip
 def test_skip():
-    'Всегда скипается.'
+    'Всегда пропускаем.'
     assert True
+
+class Test_Demo:
+    def test_class_name(self):
+        'Покажем имя класса, когда оно есть.'
+        assert True
