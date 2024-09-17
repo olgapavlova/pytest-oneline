@@ -29,8 +29,6 @@ def pytest_itemcollected(item):
     """ Срабатывает сразу после того, как найден очередной тест-кейс (item).
         Здесь используем, чтобы сразу подготовить данные для сбора строки.
     """
-    #pprint.pprint(item.__dict__)
-    #print("\n\n\n")
     item.oneline = OneLine(item)
 
 
@@ -57,6 +55,14 @@ def pytest_report_teststatus(report, config):
             case 'failed':  signs = ['!', 'Опаньки']
             case _:         signs = ['', '']
         return (report.outcome, *signs)
+
+
+def pytest_runtestloop(session):
+    """ Запускается основной цикл тестирования и вывода результатов.
+        Для режима --collect-only срабатывает только сам хук. 
+    """
+    if session.config.option.collectonly:
+        print("\n".join([i._nodeid for i in session.items]))
 
 
 """ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
@@ -130,7 +136,7 @@ class OneLine:
         """
         if config is not None:
             cls._config = config
-            cls._on = config.getoption(cls._key)
+            cls._on = bool(config.getoption(cls.key))
         else:
             raise Exception("Нет данных конфигурации, а нужны.")
 
@@ -167,3 +173,6 @@ class OneLine:
             # TODO Расширить до использования .python_files
         return cls._file_prefix
 
+
+class OneLineException(Exception):
+    pass
