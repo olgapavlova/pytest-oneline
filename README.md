@@ -1,5 +1,6 @@
 # OneLine • pytest-online
 Зародыш плагина для кастомизации строчек отчётов в [pytest](https://docs.pytest.org/).
+
 ![Как выглядит отчёт pytest после включения плагина](https://github.com/user-attachments/assets/9368babb-93dd-4a43-b12b-849fc7dcb197)
 
 ## Как использовать
@@ -23,4 +24,5 @@
 ## Полезное
 1. Шпаргалка по хукам ```pytest``` в форматах PDF и Figma.
 2. Экспериментальные скрипты в каталоге [research](research/) и подкаталогах.
+3. 
 ![Шпаргалка по хукам](https://github.com/user-attachments/assets/7db3fccd-d7d1-414d-9224-f5b2cc3275b1)
