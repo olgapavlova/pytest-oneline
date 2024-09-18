@@ -24,5 +24,5 @@
 ## Полезное
 1. Шпаргалка по хукам ```pytest``` в форматах PDF и Figma.
 2. Экспериментальные скрипты в каталоге [research](research/) и подкаталогах.
-3. 
+
 ![Шпаргалка по хукам](https://github.com/user-attachments/assets/7db3fccd-d7d1-414d-9224-f5b2cc3275b1)
