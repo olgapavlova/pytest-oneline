@@ -79,6 +79,7 @@ class OneLinePreset:
     group: str = "Ключи плагина OneLine"
     description: str = "Потихоньку добавляем то, что нужно." 
     file_prefix: str = "test_"  # TODO Расширить до использования .python_files
+    template: str = "{o.module} | {o.cls}{o.function:5} • {o.doc:25} {o.params}"
 
     @property
     def dashkey(self):
@@ -152,14 +153,9 @@ class OneLineItem:
         except Exception:
             self.params = None
 
-
-    def _format_params(self):
-        pass
-
     def format(self):
         self._preformat()
-        format_template = "{o.module} | {o.cls}{o.function:5} • {o.doc:25} {o.params}"
-        return format_template.format(o=self) 
+        return OneLinePreset().template.format(o=self) 
 
     def _preformat(self):
         self._preformat_doc()

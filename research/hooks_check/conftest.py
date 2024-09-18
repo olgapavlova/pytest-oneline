@@ -1,6 +1,4 @@
-import pprint
 import pytest
-import inspect
 
 def i_am_here(function):
     """ Сигнал о том, что мы внутри конкретного хука.
