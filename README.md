@@ -1,12 +1,14 @@
+![line-schema](https://github.com/user-attachments/assets/2d0d1d6d-55c2-4403-b1aa-97dba3ca78a3)
+
 # OneLine • pytest-online
 Зародыш плагина для кастомизации строчек отчётов в **[pytest](https://docs.pytest.org/)**.
-
-![Как выглядит отчёт pytest после включения плагина](https://github.com/user-attachments/assets/9368babb-93dd-4a43-b12b-849fc7dcb197)
 
 ## Как использовать
 1. Скопируйте содержимое каталога [pytest-oneline](pytest-oneline/) в каталог с тестами вашего проекта.
 2. Если файл _conftest.py_ у вас уже есть — объедините его с одноимённым файлом плагина.
 3. После этого отчёты **pytest** в терминале начнут выглядеть по новому.
+
+![Как выглядит отчёт pytest после включения плагина](https://github.com/user-attachments/assets/9368babb-93dd-4a43-b12b-849fc7dcb197)
 
 ## Как адаптировать под себя
 90% настроек можно указать напрямую в датаклассе ```OneLinePreset``` (файл [conftest.py](pytest-oneline/conftest.py)).
