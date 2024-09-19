@@ -24,7 +24,7 @@
 См. статью на Хабре.
 
 ## Полезное
-1. Шпаргалка по хукам **pytest** в форматах PDF и Figma.
+1. Шпаргалка по хукам **pytest** в форматах [PDF](schema/OneLine.pdf) и [Figma](schema/OneLine.fig).
 2. Экспериментальные скрипты в каталоге [research](research/) и подкаталогах.
 
 ![Шпаргалка по хукам](https://github.com/user-attachments/assets/7db3fccd-d7d1-414d-9224-f5b2cc3275b1)
