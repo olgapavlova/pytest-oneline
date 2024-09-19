@@ -50,7 +50,7 @@ def pytest_report_teststatus(report, config):
     # TODO Обрабатывать ситуацию SKIPPED
     if report.when == 'call' and OneLineState().on:
         match report.outcome:
-            case 'passed':  signs = ['+', 'Всё хорошо']
+            case 'passed':  signs = ['+', f"{report.duration * 1_000 :.2f}"]
             case 'skipped': signs = ['/', 'Так и надо']
             case 'failed':  signs = ['!', 'Опаньки']
             case _:         signs = ['', '']
@@ -79,7 +79,8 @@ class OneLinePreset:
     group: str = "Ключи плагина OneLine"
     description: str = "Потихоньку добавляем то, что нужно." 
     file_prefix: str = "test_"  # TODO Расширить до использования .python_files
-    template: str = "{o.module} | {o.cls}{o.function:5} • {o.doc:25} {o.params}"
+    verbose: str = "{o.module} | {o.cls}{o.function:5} • {o.doc:25} {o.params}{o.fixture_names}{o.marks}"
+    quiet: str = "{o.module:7}"
 
     @property
     def dashkey(self):
@@ -101,7 +102,8 @@ class OneLineState:
         if config is not None:
             self.config = config
             self.preset = OneLinePreset()
-            self.on = bool(config.getoption(self.preset.key))
+            self.on = bool(config.getoption(self.preset.key, 1))
+            self.v = config.get_verbosity()
         else:
             if self.config is None:
                 raise OneLineException("Нет данных конфигурации, а нужны.")
@@ -124,6 +126,8 @@ class OneLineItem:
         self._init_class()  # .cls — тест-класс тестирующей функции
         self._init_function()  # .function — название тестирующей функции без префикса "test_"
         self._init_params()
+        self._init_fixture_names()
+        self._init_marks()
 
     def _init_doc(self):
         self.doc = getattr(self.item._obj, "__doc__", "")
@@ -153,14 +157,27 @@ class OneLineItem:
         except Exception:
             self.params = None
 
+    def _init_fixture_names(self):
+        self.fixture_names = self.item.fixturenames
+
+    def _init_marks(self):
+        self.marks = self.item.own_markers
+
     def format(self):
         self._preformat()
-        return OneLinePreset().template.format(o=self) 
+        if OneLineState().v:
+            template = OneLinePreset().verbose
+        else:
+            template = OneLinePreset().quiet
+        return template.format(o=self) 
+
 
     def _preformat(self):
         self._preformat_doc()
         self._preformat_params()
         self._preformat_cls()
+        self._preformat_fixture_names()
+        self._preformat_marks()
 
     def _preformat_cls(self):
         if self.cls is not None:
@@ -176,6 +193,18 @@ class OneLineItem:
             self.params = '(' + ', '.join([str(a) + '=' + str(b) for a, b in self.params.items()]) + ')'
         else:
             self.params = ''
+
+    def _preformat_fixture_names(self):
+        if self.fixture_names != []:
+            self.fixture_names = ' [' + ', '.join(self.fixture_names) + ']'
+        else:
+            self.fixture_names = ''
+
+    def _preformat_marks(self):
+        if self.marks != []:
+            self.marks = ' ' + ' '.join(['#' + m.name for m in self.marks]) 
+        else:
+            self.marks = ''
 
 class OneLineException(Exception):
     pass
