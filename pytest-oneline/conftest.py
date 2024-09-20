@@ -58,13 +58,13 @@ def pytest_report_teststatus(report, config):
 
 def pytest_runtestloop(session):
     """ Запускается основной цикл тестирования и вывода результатов.
-        Для режима --collect-only срабатывает только сам хук. 
+        Для режима --collect-only срабатывает только сам хук.
     """
     if session.config.option.collectonly:
         print("\n".join([i._nodeid for i in session.items]))
+        pass
 
-
-""" * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
+"""* * * * * * * * * * * * * * * * * * * * * * * * * * * * *  
     Вспомогательные классы, не относящиеся к фреймворку pytest.
     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * """
 
