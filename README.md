@@ -12,7 +12,7 @@
 
 ## Как адаптировать под себя
 90% настроек можно указать напрямую в датаклассе ```OneLinePreset``` (файл [conftest.py](pytest-oneline/conftest.py)).
-Для остального есть рецепты в статье.
+Для остального есть рецепты в [статье](https://habr.com/ru/articles/844728/).
 
 ## Ограничения
 У всех тестирующих функций должны быть docstrings.
@@ -20,7 +20,7 @@
 Возможны и другие сюрпризы. Пожалуйста, [создавайте issues в проекте](https://github.com/olgapavlova/pytest-oneline/issues).
 
 ## Детали реализации
-См. статью на Хабре.
+См. [статью на Хабре](https://habr.com/ru/articles/844728/).
 
 ## Полезное
 1. Шпаргалка по хукам **pytest** в форматах [PDF](schema/OneLine.pdf) и [Figma](schema/OneLine.fig).
