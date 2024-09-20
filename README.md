@@ -22,6 +22,8 @@
 ## Детали реализации
 См. [статью на Хабре](https://habr.com/ru/articles/844728/).
 
+Backlog — в [отдельном текстовом файле .backlog](.backlog) этого репозитория.
+
 ## Полезное
 1. Шпаргалка по хукам **pytest** в форматах [PDF](schema/OneLine.pdf) и [Figma](schema/OneLine.fig).
 2. Экспериментальные скрипты в каталоге [research](research/) и подкаталогах.
